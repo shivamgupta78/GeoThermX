@@ -1,0 +1,37 @@
+
+# Heavy geospatial dataset file ko rokne ke liye
+Backend/app.csv
+
+# Satellite remote sensing high-res image files
+Backend/*.tif
+Backend/*.tiff
+
+# Python local ecosystem secrets and environment configuration
+Backend/.env
+Backend/venv/
+Backend/.venv/
+Backend/env/
+
+# Python compiler runtime execution artifacts
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.pytest_cache/
+
+# ⚛️ REACT & FRONTEND IGNORES
+# --------------------------------------------------------------------
+# Node dependencies package installations (Dono directory ke liye safe check)
+**/node_modules/
+frontend/node_modules/
+
+# Production builds
+frontend/dist/
+frontend/build/
+
+# Local local-only dev configuration patterns
+frontend/.env
+frontend/.env.local
+
+
+#//& "C:\Users\shiva\AppData\Local\Programs\Python\Python311\python.exe" -m uvicorn main_advanced-1:app --reload
