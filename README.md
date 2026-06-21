@@ -42,7 +42,9 @@ cd backend
 ```
 
 # Create a .env file inside the backend folder and add your API key:
-# GEMINI_API_KEY="your_real_api_key_here"
+```text
+GEMINI_API_KEY="your_real_api_key_here"
+```
 
 # Install required Python dependencies
 ```bash
