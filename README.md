@@ -27,7 +27,7 @@ Urban-Heat-Mitigation-Platform/
 ├── frontend/           # React dashboard & Leaflet GIS Map
 ├── .gitignore          # Production security configuration
 └── README.md           # Product documentation
-
+```
 
 
 🏃‍♂️ Local Installation & Setup
@@ -36,6 +36,7 @@ Make sure you have Python 3.11+ and Node.js (v18+) installed on your system.
 
 2. Backend Setup
 Navigate to the backend directory, configure environment variables, and start the API server:
+
 
 ```bash
 cd backend
