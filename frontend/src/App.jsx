@@ -15,7 +15,7 @@ function App() {
   const [aiReport, setAiReport] = useState("AI Agent analyzing satellite grids...");
   const [loadingAi, setLoadingAi] = useState(true);
 
-  // Base feature values (Dwarka/Delhi region ke realistic averages as placeholder input)
+  
   const baseInput = {
     ndvi: 0.15,
     ndbi: 0.45,
@@ -26,19 +26,16 @@ function App() {
     building_density: 65.0
   };
 
-  // Fetch Feature, Recommendations, AND Gemini Report on Load
+ 
 useEffect(() => {
-  // 1. Purana Code: Graph data lane ke liye
   axios.get(`${API_BASE}/feature-importance`)
     .then(res => setImportanceData(res.data.feature_importance))
     .catch(err => console.error("Error fetching importance", err));
 
-  // 2. Purana Code: Recommendations lane ke liye
   axios.get(`${API_BASE}/recommendations`)
     .then(res => setRecommendations(res.data.recommended_actions))
     .catch(err => console.error("Error fetching recommendations", err));
 
-  // 3. Naya Code: Gemini Agent Report lane ke liye (Saath mein jod diya)
   axios.get(`${API_BASE}/gemini-spatial-analysis`)
     .then(res => {
       setAiReport(res.data.ai_analysis);
@@ -51,7 +48,6 @@ useEffect(() => {
     });
 }, []);
  
-  // Trigger Simulation when slider changes
   useEffect(() => {
     axios.post(`${API_BASE}/simulate-cooling`, {
       ...baseInput,
@@ -86,7 +82,7 @@ useEffect(() => {
         {/* LEFT PANEL: SIMULATION & SLIDERS */}
         <div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <h3>🌲 Digital Twin: Cooling Simulation</h3>
-          <p style={{ fontSize: '14px', color: '#6b7280' }}>Slider ko drag karke check karein ki tree cover badhane se temperature kitna drop hota hai.</p>
+          <p style={{ fontSize: '14px', color: '#6b7280' }}>Drag the slider to see how much the temperature drops as tree cover increases..</p>
           
           <div style={{ margin: '30px 0' }}>
             <label style={{ fontWeight: 'bold' }}>Proposed Tree Cover Increase: {sliderValue}%</label>
@@ -117,14 +113,15 @@ useEffect(() => {
         {/* RIGHT PANEL: EXPLAINABLE AI (CHARTS) */}
         <div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <h3>📊 Drivers of Heating (Explainable AI)</h3>
-          <p style={{ fontSize: '14px', color: '#6b7280' }}>Random Forest model ke mutabik kaunsa factor garmi badhane ke liye sabse zyada zimmedar hai.</p>
+          <p style={{ fontSize: '14px', color: '#6b7280' }}>According to the Random Forest model, which factor is most responsible for the rise in heat?</p>
           <div style={{ height: '250px', marginTop: '20px' }}>
             {importanceData ? <Bar data={chartData} options={{ maintainAspectRatio: false }} /> : <p>Loading Analytics...</p>}
           </div>
         </div>
         <div style={{ gridColumn: '1 / span 2', backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
   <h3>🔴 Geospatial Hotspot Identification (Delhi NCR)</h3>
-  <p style={{ fontSize: '14px', color: '#6b7280' }}>Ye map un areas ko highlight kar raha hai jahan temperature threshold se zyada hai.</p>
+  <p style={{ fontSize: '14px', color: '#6b7280' }}>This map highlights the areas where the temperature exceeds the threshold.
+.</p>
   <HeatMap />
 </div>
   {/* PREMIUM GEMINI AI AGENT PANEL */}

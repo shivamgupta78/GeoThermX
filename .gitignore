@@ -34,4 +34,3 @@ frontend/.env
 frontend/.env.local
 
 
-#//& "C:\Users\shiva\AppData\Local\Programs\Python\Python311\python.exe" -m uvicorn main_advanced-1:app --reload
